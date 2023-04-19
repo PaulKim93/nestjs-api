@@ -7,11 +7,15 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
-    "start:dev": "nest start --watch",
+    "start:dev": "NODE_ENV=development nest start --watch",
+    "start:stage": "NODE_ENV=stage nest start --watch",
+    "start:prod": "NODE_ENV=production node dist/main",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "deploy:dev": "npm install --save && npx pm2 reload ecosystem.config.js",
+    "deploy:stage": "npm install --save && npx pm2 reload ecosystem.config.js --env stage",
+    "deploy:prod": "npm install --save && npx pm2 reload ecosystem.config.js --env production",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -20,11 +24,31 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/axios": "^2.0.0",
     "@nestjs/common": "^9.0.0",
+    "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
-    "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/jwt": "^10.0.2",
+    "@nestjs/passport": "^9.0.3",
+    "@nestjs/platform-express": "^9.3.9",
+    "@nestjs/platform-socket.io": "^9.3.9",
+    "@nestjs/swagger": "^6.2.1",
+    "@nestjs/typeorm": "^9.0.1",
+    "@nestjs/websockets": "^9.3.9",
+    "bcrypt": "^5.1.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "express-useragent": "^1.0.15",
+    "firebase-admin": "^11.5.0",
+    "moment": "^2.29.4",
+    "mysql2": "^3.2.0",
+    "nestjs-real-ip": "^2.2.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.8.0",
+    "typeorm": "^0.3.12"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
@@ -55,7 +79,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -63,7 +87,14 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/share(|/.*)$": "<rootDir>/libs/share/src/$1"
+    }
   }
 }
