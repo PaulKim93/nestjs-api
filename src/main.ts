@@ -15,11 +15,11 @@ async function bootstrap() {
   });
   app.use(express());
   app.useGlobalInterceptors(new GlobalLoggingInterceptor());
-  const appPort: number = (app.get(ConfigService).get('API_PORT') as number) || 3000;
+  const appPort: number = app.get(ConfigService).get('API_PORT');
 
   //CORS 활성
   app.enableCors({
-    origin: true,
+    origin: true, // 나중에 변경
     methods: 'GET,PUT,PATCH,POST,DELETE',
     credentials: false,
   });
@@ -39,7 +39,7 @@ async function bootstrap() {
     const swaggerConfig = new DocumentBuilder()
       .setTitle(`NEST JS API`)
       .setDescription('NEST JS API Authorize')
-      .setVersion('1.1')
+      .setVersion('1.0')
       .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'Bearer' }, 'access-token')
       .build();
 
@@ -48,7 +48,7 @@ async function bootstrap() {
         persistAuthorization: true,
         defaultModelsExpandDepth: -1,
       },
-      customSiteTitle: 'NEST JS API [NEST JS]',
+      customSiteTitle: 'NEST JS API',
     };
     const document = SwaggerModule.createDocument(app, swaggerConfig, { deepScanRoutes: true });
     SwaggerModule.setup('api-docs', app, document, swaggerOption);
