@@ -3,6 +3,7 @@ import { AllExceptionsFilter } from '@app/share/modules/filter/all-exception.fil
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { mysqlConection } from '@app/share/modules/db/mysql-connection';
+import { AuthModule } from './auth/auth.module';
 import * as Joi from 'joi';
 @Module({
   imports: [
@@ -25,8 +26,13 @@ import * as Joi from 'joi';
         JWT_ALGO: Joi.string(),
         JWT_JTI: Joi.string(),
       }),
+      validationOptions: {
+        allowUnknown: false, //환경 변수에 알 수 없는 키를 허용할지 여부를 제어
+        abortEarly: true, //true인 경우 첫 번째 오류에서 유효성 검사를 중지합니다. false인 경우 모든 오류를 반환
+      },
     }),
     mysqlConection,
+    AuthModule,
   ],
   providers: [
     {
