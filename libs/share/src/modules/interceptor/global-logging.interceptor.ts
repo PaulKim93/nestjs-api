@@ -10,7 +10,6 @@ import { Request, Response } from 'express';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { v4 as uuid } from 'uuid';
-//import { PrivacyReplacer } from './PrivacyReplacer';
 //import { clone } from 'ramda';
 import * as moment from 'moment';
 @Injectable()
@@ -18,11 +17,6 @@ export class GlobalLoggingInterceptor implements NestInterceptor {
   private requestLogger = new Logger('HTTP_REQUEST');
   private responseLogger = new Logger('HTTP_RESPONSE');
   private errorLogger = new Logger('HTTP_ERROR');
-  /*
-  constructor(
-    //@Inject('LOGGING_IGNORE_PATH') private readonly loggingIgnorePath: string[], //private readonly privacyReplacer: PrivacyReplacer,
-  ) {}
-  */
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     //console.log(request);

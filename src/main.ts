@@ -6,10 +6,15 @@ import { DocumentBuilder, SwaggerModule, SwaggerCustomOptions } from '@nestjs/sw
 import { ConfigService } from '@nestjs/config';
 import { express } from 'express-useragent';
 import { join } from 'path';
+import { GlobalLoggingInterceptor } from '@app/share/modules/interceptor/global-logging.interceptor';
+import { winstonLogger } from '@app/share/utils/winston.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: winstonLogger,
+  });
   app.use(express());
+  app.useGlobalInterceptors(new GlobalLoggingInterceptor());
   const appPort: number = (app.get(ConfigService).get('API_PORT') as number) || 3000;
 
   //CORS 활성
