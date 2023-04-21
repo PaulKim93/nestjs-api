@@ -4,7 +4,7 @@ import { ApiOperation, ApiBearerAuth, ApiResponse, ApiTags, ApiBody } from '@nes
 import { UserLocalAuthGuard } from './guards/user-local-auth.guard';
 import { AuthService } from './auth.service';
 import { DefaultUserDto } from '@api/auth/dto/res.dto';
-import { UserJoinReqDtoPost } from './dto/req.dto';
+import { UserJoinReqDtoPost, UserLoginReqDtoPost } from './dto/req.dto';
 import { RealIP } from 'nestjs-real-ip';
 @Controller('auth')
 @ApiTags('auth')
@@ -14,6 +14,7 @@ export class AuthController {
   @Post('/user/login')
   @ApiOperation({ summary: '회원 로그인' })
   @UseGuards(UserLocalAuthGuard)
+  @ApiBody({ type: UserLoginReqDtoPost })
   @ApiResponse({ status: 400, description: '필수 항목 미입력', type: BaseErrorResDto })
   @ApiResponse({ status: 200, description: '성공', type: BaseResDto })
   async loginPost(@Request() req) {

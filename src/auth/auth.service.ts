@@ -80,13 +80,20 @@ export class AuthService {
    * 로그인 정상적으로 완료 하면 토큰발행
    * @param user
    */
-  async ceateUserToken(user: DefaultUserDto) {
+  async ceateUserToken(
+    user: DefaultUserDto,
+  ): Promise<{ user: DefaultUserDto; access_token: string; refresh_token: string }> {
     try {
       const access_token = await this.jwtService.signAsync(user);
       const refresh_token = await this.jwtService.signAsync(user, {
         secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
         expiresIn: this.configService.get<string>('JWT_REFRESH_TTL'),
       });
+      return {
+        user,
+        access_token,
+        refresh_token,
+      };
     } catch (e) {
       throw e;
     }
