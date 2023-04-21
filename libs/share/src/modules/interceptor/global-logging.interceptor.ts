@@ -71,10 +71,7 @@ export class GlobalLoggingInterceptor implements NestInterceptor {
     if (request.user == null || typeof request.user !== 'object') {
       return null;
     }
-
     const user = { ...request.user };
-    delete user.password;
-
     return user;
   }
 }

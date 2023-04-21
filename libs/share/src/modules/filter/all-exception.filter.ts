@@ -42,7 +42,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       resJson.message = exception.message;
     }
 
-    this.logger.error(resJson, exception);
+    this.logger.error(resJson);
     //console.log(resJson, exception);
 
     res.status(status).json(resJson);

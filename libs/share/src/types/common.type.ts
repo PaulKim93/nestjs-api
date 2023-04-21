@@ -13,26 +13,12 @@ export const MHRLS_SE_ENUM: ReadonlyRecord<any, MHRLS_SE> = {
 //회원 구분
 const mber_se = {
   NORMAL: '1',
-  SELLER_MARSTER: '2',
-  BUYER_MARSTER: '3',
-  DESIGNER: '4',
-  DELIVERY_MAN: '5',
   BOARD_SUBER_ADMIN: '6',
-  SELLER_EMPL: '7',
-  DELIVERY_MARSTER: '8',
-  MIXED_SUPER_ADMIN: '9',
 } as const;
 export type MBER_SE = (typeof mber_se)[keyof typeof mber_se];
 export const MBER_SE_ENUM: ReadonlyRecord<any, MBER_SE> = {
   NORMAL: '1',
-  SELLER_MARSTER: '2',
-  BUYER_MARSTER: '3',
-  DESIGNER: '4',
-  DELIVERY_MAN: '5',
   BOARD_SUBER_ADMIN: '6',
-  SELLER_EMPL: '7',
-  DELIVERY_MARSTER: '8',
-  MIXED_SUPER_ADMIN: '9',
 };
 
 //회원 상태

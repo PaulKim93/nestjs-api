@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserJwtStrategy } from './strategies/user-jwt.strategy';
 import { UserLocalStrategy } from './strategies/user-local.strategy';
+import { MberRepositroy } from './repository/mber.repository';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { UserLocalStrategy } from './strategies/user-local.strategy';
         signOptions: {
           jwtid: configService.get('JWT_JTI'),
           algorithm: configService.get('JWT_ALGO'),
-          expiresIn: `${configService.get('JWT_TTL')}s`,
+          expiresIn: `${configService.get('JWT_TTL')}`,
         },
         verifyOptions: {
           algorithms: [configService.get('JWT_ALGO')],
@@ -27,6 +28,6 @@ import { UserLocalStrategy } from './strategies/user-local.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UserJwtStrategy, UserLocalStrategy],
+  providers: [AuthService, UserJwtStrategy, UserLocalStrategy, MberRepositroy],
 })
 export class AuthModule {}

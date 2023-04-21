@@ -1,6 +1,14 @@
-import { Column, Entity, BaseEntity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  BeforeInsert,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Bbsctt } from '@app/share/models/community';
+import * as bcrypt from 'bcrypt';
 
 //회원
 @Entity('mber')
@@ -45,12 +53,6 @@ export class Mber extends BaseEntity {
   })
   @Column({ type: 'varchar', comment: '비밀번호', length: 255, nullable: true })
   password!: string;
-  @ApiProperty({ example: 'string', description: '고유키', required: true, nullable: false })
-  @Column({ type: 'varchar', comment: '고유키', length: 255, nullable: false })
-  esntl_key: string;
-  @ApiProperty({ example: 'string', description: 'FCM키', required: true, nullable: false })
-  @Column({ type: 'varchar', comment: 'FCM키', length: 255, nullable: false })
-  fcm_key: string;
   @ApiProperty({ example: 'string', description: '이름', required: true, nullable: false })
   @Column({ type: 'varchar', comment: '이름', length: 50, nullable: false })
   nm: string;
@@ -60,13 +62,6 @@ export class Mber extends BaseEntity {
     required: true,
     nullable: false,
   })
-  @Column({
-    type: 'varchar',
-    comment: '닉네임 (null 이면 등록되지 않은 상태)',
-    length: 50,
-    nullable: false,
-  })
-  ncnm: string;
   @ApiProperty({ example: 'string', description: '생년월일', required: true, nullable: false })
   @Column({ type: 'char', comment: '생년월일', length: 10, nullable: false })
   brthdy: string;
@@ -137,4 +132,10 @@ export class Mber extends BaseEntity {
   //게시물들
   @OneToMany(() => Bbsctt, (item) => item.user)
   bbsctts: Bbsctt[];
+
+  @BeforeInsert()
+  async setPassword(password: string) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(password || this.password, salt);
+  }
 }
