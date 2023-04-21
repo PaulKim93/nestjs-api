@@ -31,9 +31,9 @@ export class BbsSttemnt extends BaseEntity {
   @ApiProperty({
     example: 1,
     type: Number,
-    description: '삭제처리여부 1: 신고 2: 삭제 3: 반려(140)',
+    description: '삭제처리여부 1: 신고 2: 삭제 3: 반려',
   })
-  @Column({ type: 'varchar', length: 4, comment: '삭제처리여부 1: 신고 2: 삭제 3: 반려(140)' })
+  @Column({ type: 'varchar', length: 4, comment: '삭제처리여부 1: 신고 2: 삭제 3: 반려' })
   del_process_at: string;
   @ApiProperty({ example: 'datetime', description: '등록일시', nullable: true, required: true })
   @Column({ type: 'datetime', comment: '등록일시' })

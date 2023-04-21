@@ -7,12 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import {
-  Bbsctt,
-  BbscttAnswerImage,
-  BbsctAnswerTree,
-  BbsRecomend,
-} from '@app/share/models/community';
+import { Bbsctt, BbscttAnswerImage, BbsRecomend } from '@app/share/models/community';
 import { ApiProperty } from '@nestjs/swagger';
 
 //게시판->게시글->게시글댓글
@@ -33,8 +28,8 @@ export class BbsctAnswer extends BaseEntity {
   @ApiProperty({ example: 'string', description: '댓글내용 length: 255' })
   @Column({ type: 'varchar', comment: '댓글내용', length: 255 })
   answer_cn: string;
-  @ApiProperty({ example: 'string', description: '노출여부 1:Y, 2:N (FAB140)' })
-  @Column({ type: 'varchar', comment: '노출여부 1:Y, 2:N (FAB140)', length: 4 })
+  @ApiProperty({ example: 'string', description: '노출여부 1:Y, 2:N' })
+  @Column({ type: 'varchar', comment: '노출여부 1:Y, 2:N', length: 4 })
   expsr_at: string;
   @ApiProperty({ example: 1, type: Number, description: '추천수' })
   @Column({ type: 'integer', comment: '추천수' })
@@ -45,8 +40,8 @@ export class BbsctAnswer extends BaseEntity {
   @ApiProperty({ example: 1, type: Number, description: '신고횟수' })
   @Column({ type: 'integer', comment: '신고횟수' })
   sttemnt_co: number;
-  @ApiProperty({ example: 'string', description: '처리구분 1: 신고, 2: 삭제, 3: 반려 (FAB140)' })
-  @Column({ type: 'varchar', comment: '처리구분 1: 신고, 2: 삭제, 3: 반려 (FAB140)', length: 4 })
+  @ApiProperty({ example: 'string', description: '삭제처리여부 1: 신고, 2: 삭제, 3: 반려' })
+  @Column({ type: 'varchar', comment: '삭제처리여부 1: 신고, 2: 삭제, 3: 반려', length: 4 })
   del_process_at: string;
   @ApiProperty({ example: 1, type: Number, description: '등록자ID', required: true })
   @Column({ type: 'bigint', comment: '등록자ID' })
@@ -68,15 +63,20 @@ export class BbsctAnswer extends BaseEntity {
   @JoinColumn({ name: 'bbsctt_id', referencedColumnName: 'bbsctt_id' })
   bbsctt: Bbsctt;
 
-  @ApiProperty({ type: BbscttAnswerImage, isArray: true, description: '댓글의 등록된 이미지' })
+  //댓글의 등록된 이미지
   @OneToMany(() => BbscttAnswerImage, (item) => item.answer)
   images: BbscttAnswerImage[];
 
-  @ApiProperty({ type: BbsctAnswerTree, isArray: true, description: '댓글의 댓글 리스트 정보' })
-  @OneToMany(() => BbsctAnswerTree, (item) => item.answer)
-  answers: BbsctAnswerTree[];
-
-  @ApiProperty({ type: BbsRecomend, isArray: true, description: '댓글의 좋아요, 싫어요 정보' })
+  //댓글의 좋아요, 싫어요 정보
   @OneToMany(() => BbsRecomend, (item) => item.answer)
   recomends: BbsRecomend[];
+
+  //자식 답글
+  @OneToMany(() => BbsctAnswer, (item) => item.parent_answer)
+  child_answers?: BbsctAnswer[];
+
+  //부모 답글
+  @ManyToOne(() => BbsctAnswer, (item) => item.child_answers)
+  @JoinColumn({ name: 'parnts_bbsctt_answer_id', referencedColumnName: 'bbsctt_answer_id' })
+  parent_answer?: BbsctAnswer;
 }

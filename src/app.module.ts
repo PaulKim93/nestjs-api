@@ -27,7 +27,7 @@ import * as Joi from 'joi';
         JWT_JTI: Joi.string(),
       }),
       validationOptions: {
-        allowUnknown: false, //환경 변수에 알 수 없는 키를 허용할지 여부를 제어
+        //allowUnknown: false, //환경 변수에 알 수 없는 키를 허용할지 여부를 제어
         abortEarly: true, //true인 경우 첫 번째 오류에서 유효성 검사를 중지합니다. false인 경우 모든 오류를 반환
       },
     }),

@@ -7,8 +7,8 @@ export class PrhibtWord extends BaseEntity {
   @ApiProperty({ example: 1, type: Number, description: '금칙용어ID', required: true })
   @PrimaryGeneratedColumn({ type: 'bigint', comment: '금칙용어ID' })
   prhibt_word_id!: number;
-  @ApiProperty({ example: 'string', description: '적용구분 (FAB138)' })
-  @Column({ type: 'varchar', comment: '적용구분 (FAB138)', length: 4 })
+  @ApiProperty({ example: 'string', description: '적용구분 1: 게시글/댓글 2: 닉네임' })
+  @Column({ type: 'varchar', comment: '적용구분 1: 게시글/댓글 2: 닉네임', length: 4 })
   applc_se: string;
   @ApiProperty({ example: 'string', description: '금칙용어' })
   @Column({ type: 'varchar', comment: '금칙용어', length: 255 })

@@ -39,14 +39,14 @@ export class Bbsctt extends BaseEntity {
   bbs_ctgry_id: number;
   @ApiProperty({
     example: 'string',
-    description: '공지 표시 여부 1:Y, 2:N (001)',
+    description: '공지 표시 여부 1:Y 2:N ',
     required: true,
     default: '2',
   })
   @Column({ type: 'varchar', comment: '중요여부', length: 4 })
   imprtnc_at: string;
-  @ApiProperty({ example: 'string', description: '관리자표시여부' })
-  @Column({ type: 'varchar', comment: '관리자표시여부', length: 4 })
+  @ApiProperty({ example: 'string', description: '관리자표시여부 1:Y 2:N' })
+  @Column({ type: 'varchar', comment: '관리자표시여부 1:Y 2:N', length: 4 })
   mngr_indict_at: string;
   @ApiProperty({ example: 'string', description: '작성자명 length: 100', required: false })
   @Column({ type: 'varchar', comment: '작성자명', length: 100 })
@@ -57,8 +57,8 @@ export class Bbsctt extends BaseEntity {
   @ApiProperty({ example: 'string HTML', description: '게시글내용' })
   @Column({ type: 'text', comment: '게시글내용' })
   bbsctt_cn: string;
-  @ApiProperty({ example: 'string', description: '노출여부' })
-  @Column({ type: 'varchar', comment: '노출여부', length: 4 })
+  @ApiProperty({ example: 'string', description: '노출여부 1:Y 2:N' })
+  @Column({ type: 'varchar', comment: '노출여부 1:Y 2:N', length: 4 })
   expsr_at: string;
   @ApiProperty({ example: 1, type: Number, description: '추천수' })
   @Column({ type: 'integer', comment: '추천수' })
@@ -75,8 +75,8 @@ export class Bbsctt extends BaseEntity {
   @ApiProperty({ example: 1, type: Number, description: '신고횟수' })
   @Column({ type: 'integer', comment: '신고횟수' })
   sttemnt_co: number;
-  @ApiProperty({ example: 'string', description: '처리구분' })
-  @Column({ type: 'varchar', comment: '처리구분 삭제처리여부 (140)', length: 4 })
+  @ApiProperty({ example: 'string', description: '삭제처리여부 1: 신고 2: 삭제 3: 반려' })
+  @Column({ type: 'varchar', comment: '삭제처리여부 1: 신고 2: 삭제 3: 반려', length: 4 })
   del_process_at: string;
   @ApiProperty({ example: 1, type: Number, description: '등록자ID', required: true })
   @Column({ type: 'bigint', comment: '등록자ID' })

@@ -16,10 +16,10 @@ export class BbsRecomend extends BaseEntity {
   bbsctt_answer_id: number;
   @ApiProperty({
     example: 'string',
-    description: '추천구분 1: 좋아요, 2: 싫어요 (136)',
+    description: '추천구분 1: 좋아요, 2: 싫어요',
     required: true,
   })
-  @Column({ type: 'varchar', comment: ' 1: 좋아요, 2: 싫어요 (136)', length: 4 })
+  @Column({ type: 'varchar', comment: '추천구분 1: 좋아요, 2: 싫어요', length: 4 })
   recomend_se: string;
   @ApiProperty({ example: 1, type: Number, description: '등록자ID', required: true })
   @Column({ type: 'bigint', comment: '등록자ID' })

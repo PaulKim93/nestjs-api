@@ -19,7 +19,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       status_code: DEFAULT_STATUS_CODE,
       message: error,
       path: req.url,
-      datetime: moment().format('YYYY.MM.DD HH:mm'),
+      datetime: moment().format('YYYY.MM.DD HH:mm:ss'),
     };
 
     //error 발생시 status_code, message 처리

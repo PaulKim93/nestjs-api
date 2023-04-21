@@ -99,14 +99,14 @@ export class Mber extends BaseEntity {
   @ApiProperty({
     example: '1',
     description:
-      '승인상태 1: 승인, 2: 승인대기, 3: 거절, 4: 승인요청, 5: 승인보류, 6: 제외대상, 7: 재승인, 8: 탈퇴(FAB020)',
+      '승인상태 1: 승인, 2: 승인대기, 3: 거절, 4: 승인요청, 5: 승인보류, 6: 제외대상, 7: 재승인, 8: 탈퇴',
     required: true,
     nullable: false,
   })
   @Column({
     type: 'varchar',
     comment:
-      '승인상태 1: 승인, 2: 승인대기, 3: 거절, 4: 승인요청, 5: 승인보류, 6: 제외대상, 7: 재승인, 8: 탈퇴(FAB020)',
+      '승인상태 1: 승인, 2: 승인대기, 3: 거절, 4: 승인요청, 5: 승인보류, 6: 제외대상, 7: 재승인, 8: 탈퇴',
     length: 4,
     nullable: false,
   })
@@ -116,13 +116,13 @@ export class Mber extends BaseEntity {
   confm_dt: Date;
   @ApiProperty({
     example: 'string',
-    description: '탈퇴유형 1: 강퇴, 2: 자퇴, 3: 계약해지 (FAB054)',
+    description: '탈퇴유형 1: 강퇴, 2: 자퇴, 3: 계약해지',
     required: true,
     nullable: false,
   })
   @Column({
     type: 'varchar',
-    comment: '탈퇴유형 1: 강퇴, 2: 자퇴, 3: 계약해지 (FAB054)',
+    comment: '탈퇴유형 1: 강퇴, 2: 자퇴, 3: 계약해지',
     length: 4,
     nullable: false,
   })

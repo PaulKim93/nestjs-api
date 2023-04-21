@@ -10,28 +10,28 @@ export class Bbs extends BaseEntity {
   bbs_id!: number;
   @ApiProperty({
     example: 'string',
-    description: '게시판게시판구분 1: 일반, 2: 구인구직 (FAB137)구분',
+    description: '게시판게시판구분 1: 일반, 2: 구인구직 구분',
   })
-  @Column({ type: 'varchar', comment: '게시판구분 1: 일반, 2: 구인구직 (FAB137)', length: 4 })
+  @Column({ type: 'varchar', comment: '게시판구분 1: 일반, 2: 구인구직 ', length: 4 })
   bbs_se: string;
   @ApiProperty({ example: 'string', description: '게시판명' })
   @Column({ type: 'varchar', comment: '게시판명', length: 50 })
   bbs_nm!: string;
-  @ApiProperty({ example: 'string', description: '노출여부 1: Y, 2: N (FAB001)' })
-  @Column({ type: 'varchar', comment: '노출여부 1: Y, 2: N (FAB001)', length: 4 })
+  @ApiProperty({ example: 'string', description: '노출여부 1: Y, 2: N' })
+  @Column({ type: 'varchar', comment: '노출여부 1: Y, 2: N', length: 4 })
   expsr_at: string;
   @ApiProperty({
     example: 'string',
-    description: '작성자구분 1: 익명, 2: 아이디, 3: 닉네임 (FAB133)',
+    description: '작성자구분 1: 익명, 2: 아이디, 3: 닉네임',
   })
   @Column({
     type: 'varchar',
-    comment: '작성자구분 1: 익명, 2: 아이디, 3: 닉네임 (FAB133)',
+    comment: '작성자구분 1: 익명, 2: 아이디, 3: 닉네임',
     length: 4,
   })
   wrter_se: string;
-  @ApiProperty({ example: 'string', description: '페이지여부 1: Y, 2: N (FAB001)' })
-  @Column({ type: 'varchar', comment: '페이지여부 1: Y, 2: N (FAB001)', length: 4 })
+  @ApiProperty({ example: 'string', description: '페이지여부 1: Y, 2: N' })
+  @Column({ type: 'varchar', comment: '페이지여부 1: Y, 2: N', length: 4 })
   pge_at: string;
   @ApiProperty({ example: 1, type: Number, description: '정렬순서' })
   @Column({ type: 'integer', comment: '정렬순서' })
@@ -42,17 +42,17 @@ export class Bbs extends BaseEntity {
   @ApiProperty({ example: 1, type: Number, description: '게시판깊이' })
   @Column({ type: 'integer', comment: '게시판깊이' })
   dlvy_bbc_dp: number;
-  @ApiProperty({ example: 'string', description: '글작성여부 1: Y, 2: N (FAB001)' })
-  @Column({ type: 'varchar', comment: '글작성여부 1: Y, 2: N (FAB001)', length: 4 })
+  @ApiProperty({ example: 'string', description: '글작성여부 1: Y, 2: N' })
+  @Column({ type: 'varchar', comment: '글작성여부 1: Y, 2: N', length: 4 })
   sntnc_writng_at: string;
-  @ApiProperty({ example: 'string', description: '댓글작성여부  1: Y, 2: N (FAB001)' })
-  @Column({ type: 'varchar', comment: '댓글작성여부  1: Y, 2: N (FAB001)', length: 4 })
+  @ApiProperty({ example: 'string', description: '댓글작성여부  1: Y, 2: N' })
+  @Column({ type: 'varchar', comment: '댓글작성여부  1: Y, 2: N', length: 4 })
   answer_writng_at: string;
-  @ApiProperty({ example: 'string', description: '카테고리사용여부  1: Y, 2: N (FAB001)' })
-  @Column({ type: 'varchar', comment: '카테고리사용여부  1: Y, 2: N (FAB001)', length: 4 })
+  @ApiProperty({ example: 'string', description: '카테고리사용여부  1: Y, 2: N' })
+  @Column({ type: 'varchar', comment: '카테고리사용여부  1: Y, 2: N', length: 4 })
   ctgry_use_at: string;
-  @ApiProperty({ example: 'string', description: '배너이미지사용여부 1: Y, 2: N (FAB001)' })
-  @Column({ type: 'varchar', comment: '배너이미지사용여부 1: Y, 2: N (FAB001)', length: 4 })
+  @ApiProperty({ example: 'string', description: '배너이미지사용여부 1: Y, 2: N' })
+  @Column({ type: 'varchar', comment: '배너이미지사용여부 1: Y, 2: N', length: 4 })
   banner_image_use_at: string;
   @ApiProperty({ example: 1, type: Number, description: '등록자ID', required: true })
   @Column({ type: 'bigint', comment: '등록자ID' })
