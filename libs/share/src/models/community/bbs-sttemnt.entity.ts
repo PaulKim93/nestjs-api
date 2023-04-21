@@ -41,5 +41,5 @@ export class BbsSttemnt extends BaseEntity {
 
   @ManyToOne(() => Bbsctt, (item) => item.recomends)
   @JoinColumn({ name: 'bbsctt_id', referencedColumnName: 'bbsctt_id' })
-  post: Bbsctt;
+  bbsctt: Bbsctt;
 }

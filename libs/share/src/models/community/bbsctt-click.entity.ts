@@ -18,7 +18,7 @@ export class BbsCttClick extends BaseEntity {
   @Column({ type: 'datetime', comment: '등록일시' })
   created_at: Date;
 
-  @ManyToOne(() => Bbsctt, (post) => post.cliks)
+  @ManyToOne(() => Bbsctt, (item) => item.cliks)
   @JoinColumn({ name: 'bbsctt_id', referencedColumnName: 'bbsctt_id' })
-  post: Bbsctt;
+  bbsctt: Bbsctt;
 }

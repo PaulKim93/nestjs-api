@@ -98,16 +98,16 @@ export class Bbsctt extends BaseEntity {
   @JoinColumn({ name: 'bbs_id', referencedColumnName: 'bbs_id' })
   bbs?: Bbs;
 
-  @OneToMany(() => BbsCttClick, (item) => item.post)
+  @OneToMany(() => BbsCttClick, (item) => item.bbsctt)
   cliks?: BbsCttClick[];
 
-  @OneToMany(() => BbsctAnswer, (item) => item.post)
+  @OneToMany(() => BbsctAnswer, (item) => item.bbsctt)
   answers?: BbsctAnswer[];
 
-  @OneToMany(() => BbsRecomend, (item) => item.post)
+  @OneToMany(() => BbsRecomend, (item) => item.bbsctt)
   recomends?: BbsRecomend[];
 
-  @OneToMany(() => BbsSttemnt, (item) => item.post)
+  @OneToMany(() => BbsSttemnt, (item) => item.bbsctt)
   sttemnts?: BbsSttemnt[];
 
   @OneToOne(() => BbsCtgry)

@@ -77,5 +77,5 @@ export class Bbs extends BaseEntity {
   @OneToMany(() => BbsCtgry, (item) => item.bbs)
   categorys: BbsCtgry[];
   @OneToMany(() => Bbsctt, (item) => item.bbs)
-  posts: Bbsctt[];
+  bbsctts: Bbsctt[];
 }

@@ -64,9 +64,9 @@ export class BbsctAnswer extends BaseEntity {
   @Column({ type: 'datetime', comment: '삭제일시' })
   deleted_at: Date;
 
-  @ManyToOne(() => Bbsctt, (post) => post.answers)
+  @ManyToOne(() => Bbsctt, (item) => item.answers)
   @JoinColumn({ name: 'bbsctt_id', referencedColumnName: 'bbsctt_id' })
-  post: Bbsctt;
+  bbsctt: Bbsctt;
 
   @ApiProperty({ type: BbscttAnswerImage, isArray: true, description: '댓글의 등록된 이미지' })
   @OneToMany(() => BbscttAnswerImage, (item) => item.answer)
