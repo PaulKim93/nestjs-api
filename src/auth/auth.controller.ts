@@ -6,6 +6,8 @@ import { AuthService } from './auth.service';
 import { DefaultUserDto } from '@api/auth/dto/res.dto';
 import { UserJoinReqDtoPost, UserLoginReqDtoPost } from './dto/req.dto';
 import { RealIP } from 'nestjs-real-ip';
+import { UserRefreshJwtAuthGuard } from './guards/user-refresh-jwt-auth.guard';
+
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
@@ -18,6 +20,26 @@ export class AuthController {
   @ApiResponse({ status: 400, description: '필수 항목 미입력', type: BaseErrorResDto })
   @ApiResponse({ status: 200, description: '성공', type: BaseResDto })
   async loginPost(@Request() req) {
+    try {
+      const { user }: { user: DefaultUserDto } = req;
+      const data = await this.authService.ceateUserToken(user);
+      return {
+        status: true,
+        status_code: '0000000',
+        data,
+      };
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @Post('/user/refresh')
+  @ApiOperation({ summary: 'refresh token' })
+  @UseGuards(UserRefreshJwtAuthGuard)
+  @ApiBearerAuth('refresh-token')
+  @ApiResponse({ status: 400, description: '필수 항목 미입력', type: BaseErrorResDto })
+  @ApiResponse({ status: 200, description: '성공', type: BaseResDto })
+  async refreshPost(@Request() req) {
     try {
       const { user }: { user: DefaultUserDto } = req;
       const data = await this.authService.ceateUserToken(user);

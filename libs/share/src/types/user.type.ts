@@ -1,11 +1,34 @@
-type ReadonlyRecord<K extends string, V> = Readonly<Record<K, V>>;
-//리스트 정렬 검색필터
-const order_filter = {
-  DESC: '-1',
-  ASC: '1',
+//회원 구분
+const mber_se = {
+  NORMAL: '1',
+  BOARD_SUBER_ADMIN: '6',
 } as const;
-export type ORDER_FILTER = (typeof order_filter)[keyof typeof order_filter];
-export const ORDER_FILTER_ENUM: ReadonlyRecord<any, ORDER_FILTER> = {
-  DESC: '-1',
-  ASC: '1',
+export type MBER_SE = (typeof mber_se)[keyof typeof mber_se];
+export const MBER_SE_ENUM: ReadonlyRecord<any, MBER_SE> = {
+  NORMAL: '1',
+  BOARD_SUBER_ADMIN: '6',
+};
+
+//회원 상태
+const mber_sttus = {
+  NORMAL: '1',
+  HUMAN: '2',
+  WITHDRAW: '3',
+} as const;
+export type MBER_STTUS = (typeof mber_sttus)[keyof typeof mber_sttus];
+export const MBER_STTUS_ENUM: ReadonlyRecord<any, MBER_STTUS> = {
+  NORMAL: '1',
+  HUMAN: '2',
+  WITHDRAW: '3',
+};
+
+//모든 여부
+const expsr_at = {
+  Y: '1',
+  N: '2',
+} as const;
+export type EXPSR_AT = (typeof expsr_at)[keyof typeof expsr_at];
+export const EXPSR_AT_ENUM: ReadonlyRecord<any, EXPSR_AT> = {
+  Y: '1',
+  N: '2',
 };

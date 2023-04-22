@@ -29,7 +29,7 @@ export const winstonLogger = WinstonModule.createLogger({
             winston.format.simple()
           : winston.format.combine(
               winston.format.timestamp(),
-              utilities.format.nestLike('fabric-platform', {
+              utilities.format.nestLike('nest-js', {
                 prettyPrint: true, // nest에서 제공하는 옵션. 로그 가독성을 높여줌
                 colors: true,
               }),

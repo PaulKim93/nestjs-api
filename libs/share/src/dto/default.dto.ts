@@ -16,21 +16,25 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { MHRLS_SE, MHRLS_SE_ENUM } from '@app/share/types/common.type';
 import { ApiProperty, PickType } from '@nestjs/swagger';
 
+/**
+ * Page Requst Dto
+ */
 export class PageDto {
-  @IsDefined()
-  @IsNumberString()
-  @ApiProperty({ example: '1', type: 'string', description: '페이지 번호', required: true })
+  @IsDefined({ message: '페이지 번호는 필수값입니다.' })
+  @IsNumber()
+  @ApiProperty({ example: 1, type: Number, description: '페이지 번호', required: true })
   page: number;
 
-  @IsDefined()
-  @IsNumberString()
-  @ApiProperty({ example: '20', type: 'string', description: '페이지당 노출 개수', required: true })
+  @IsDefined({ message: '페이지당 노출 개수는 필수값입니다.' })
+  @IsNumber()
+  @ApiProperty({ example: 20, type: Number, description: '페이지당 노출 개수', required: true })
   per_page: number;
 }
-
+/**
+ * Pagination Response Dto
+ */
 export class PaginationDto {
   @ApiProperty({ example: 80, type: Number, description: '전체 리스트 개수', required: true })
   total: number;

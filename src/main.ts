@@ -41,6 +41,7 @@ async function bootstrap() {
       .setDescription('NEST JS API Authorize')
       .setVersion('1.0')
       .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'Bearer' }, 'access-token')
+      .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'Bearer' }, 'refresh-token')
       .build();
 
     const swaggerOption: SwaggerCustomOptions = {

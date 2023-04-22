@@ -12,7 +12,7 @@ import {
 } from 'class-validator';
 import { ApiProperty, PickType } from '@nestjs/swagger';
 import { Mber } from '@app/share/models/user/mber.entity';
-import { EXPSR_AT_ENUM } from '@app/share/types/common.type';
+import { EXPSR_AT_ENUM } from '@app/share/types/user.type';
 
 /**
  * 회원 로그인 POST

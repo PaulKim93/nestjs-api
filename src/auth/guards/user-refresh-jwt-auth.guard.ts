@@ -2,7 +2,7 @@ import { Injectable, ExecutionContext, UnauthorizedException } from '@nestjs/com
 import { AuthGuard } from '@nestjs/passport';
 import * as moment from 'moment';
 @Injectable()
-export class UserJwtAuthGuard extends AuthGuard('jwt') {
+export class UserRefreshJwtAuthGuard extends AuthGuard('refresh-jwt') {
   handleRequest(err: any, user: any, info: any, context: ExecutionContext, status?: any) {
     if (info) {
       const { expiredAt = null } = info;
@@ -12,13 +12,12 @@ export class UserJwtAuthGuard extends AuthGuard('jwt') {
         console.log('TokenExpiredError.jwt expired:::', expDate);
       }
     }
-
     if (err || !user) {
       throw (
         err ||
         new UnauthorizedException({
-          status_code: '0102001',
-          message: 'access-token 만료되었습니다.',
+          status_code: '0103001',
+          message: 'refresh-token 만료되었습니다.',
         })
       );
     }

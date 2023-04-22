@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserJwtStrategy } from './strategies/user-jwt.strategy';
 import { UserLocalStrategy } from './strategies/user-local.strategy';
+import { UserRefreshJwtStrategy } from './strategies/user-refresh.strategy';
 import { MberRepositroy } from './repository/mber.repository';
 
 @Module({
@@ -28,6 +29,12 @@ import { MberRepositroy } from './repository/mber.repository';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UserJwtStrategy, UserLocalStrategy, MberRepositroy],
+  providers: [
+    AuthService,
+    UserJwtStrategy,
+    UserLocalStrategy,
+    MberRepositroy,
+    UserRefreshJwtStrategy,
+  ],
 })
 export class AuthModule {}

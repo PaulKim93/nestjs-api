@@ -4,8 +4,9 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '@api/auth/auth.service';
 import { ConfigService } from '@nestjs/config';
 import { DefaultUserDto } from '@api/auth/dto/res.dto';
+
 @Injectable()
-export class UserJwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class UserRefreshJwtStrategy extends PassportStrategy(Strategy, 'refresh-jwt') {
   constructor(
     private readonly authService: AuthService,
     private readonly configService: ConfigService,
@@ -13,7 +14,7 @@ export class UserJwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get<string>('JWT_SECRET'),
+      secretOrKey: configService.get<string>('JWT_REFRESH_SECRET'),
       passReqToCallback: true,
     });
   }
