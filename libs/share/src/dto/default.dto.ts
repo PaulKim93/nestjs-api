@@ -23,12 +23,12 @@ import { ApiProperty, PickType } from '@nestjs/swagger';
  */
 export class PageDto {
   @IsDefined({ message: '페이지 번호는 필수값입니다.' })
-  @IsNumber()
+  @IsNumberString()
   @ApiProperty({ example: 1, type: Number, description: '페이지 번호', required: true })
   page: number;
 
   @IsDefined({ message: '페이지당 노출 개수는 필수값입니다.' })
-  @IsNumber()
+  @IsNumberString()
   @ApiProperty({ example: 20, type: Number, description: '페이지당 노출 개수', required: true })
   per_page: number;
 }

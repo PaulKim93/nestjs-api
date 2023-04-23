@@ -19,6 +19,7 @@ import {
   BbscttAnswerImage,
   PrhibtWord,
 } from '@app/share/models/community';
+import { CommunityModule } from '@api/community/community.module';
 
 @Module({
   imports: [
@@ -63,6 +64,7 @@ import {
       PrhibtWord,
     ]),
     AuthModule,
+    CommunityModule,
   ],
   providers: [
     {

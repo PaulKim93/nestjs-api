@@ -1,3 +1,4 @@
+type ReadonlyRecord<K extends string, V> = Readonly<Record<K, V>>;
 //회원 구분
 const mber_se = {
   NORMAL: '1',
